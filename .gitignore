@@ -1,4 +1,3 @@
-udp-spoof
 # Binaries for programs and plugins
 *.exe
 *.exe~
@@ -14,3 +13,4 @@ udp-spoof
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+udp-spoof
