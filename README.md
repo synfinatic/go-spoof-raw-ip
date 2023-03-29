@@ -1,6 +1,10 @@
 # spoofrawip
 A pure Go Source IP Spoofing library
 
+### Status
+
+This project is a work in progress.  Not yet working :(
+
 ### Overview
 
 It's pretty trival to use [gopacket/pcap](https://pkg.go.dev/github.com/google/gopacket/pcap)

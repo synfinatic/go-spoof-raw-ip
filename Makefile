@@ -1,5 +1,5 @@
 ALL:
-	go build ./spoofrawip/...
+	go build ./cmd/udp-spoof/...
 
 # run everything but `lint` because that runs via it's own workflow
 .build-tests: vet test-fmt
