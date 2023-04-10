@@ -1,7 +1,7 @@
 //go:build freebsd || dragonfly || netbsd || openbsd
 // +build freebsd dragonfly netbsd openbsd
 
-package spoofsrcip
+package spoof
 
 import (
 	"fmt"

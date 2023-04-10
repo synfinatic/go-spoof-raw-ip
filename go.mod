@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/alecthomas/kong v0.7.1
-	github.com/davecgh/go-spew v1.1.1
+//	github.com/davecgh/go-spew v1.1.1
 	github.com/google/gopacket v1.1.19
 	github.com/sirupsen/logrus v1.9.0
 )
