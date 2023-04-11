@@ -1,7 +1,7 @@
 //go:build linux
 // +build linux
 
-package spoofsrcip
+package spoof
 
 import (
 	"fmt"
