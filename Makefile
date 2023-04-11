@@ -1,6 +1,11 @@
 ALL:
 	go build ./cmd/udp-spoof/...
 
+freebsd: udp-spoof-freebsd
+
+udp-spoof-freebsd: $(wildcard cmd/udp-spoof/* pkg/spoof/*)
+	GOOS=freebsd go build -o udp-spoof-freebsd ./cmd/udp-spoof/...
+
 # run everything but `lint` because that runs via it's own workflow
 .build-tests: vet test-fmt
 

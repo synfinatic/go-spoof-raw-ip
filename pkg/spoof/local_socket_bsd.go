@@ -6,6 +6,7 @@ package spoof
 import (
 	"fmt"
 	"net"
+	"errors"
 	"syscall"
 )
 
@@ -22,21 +23,29 @@ func setupLocalSocket(fd uintptr, iface net.Interface) error {
 		return fmt.Errorf("setsockopt IP_BINDANY: %s", err.Error())
 	}
 
-	var addr net.IP
 	addrs, err := iface.Addrs()
 	if err != nil {
 		return fmt.Errorf("getting Addrs(): %s", err.Error())
 	}
+	var addr net.IP
 	for _, a := range addrs {
-		ip := a.String()
-		addr = net.ParseIP(a.String())
+		fmt.Printf("Found address: %s\n",  a.String())
+		if addr, _, err = net.ParseCIDR(a.String()); err != nil {
+			return err
+		}
+		if addr.To4() != nil {
+			break
+		}
+	}
+	if addr == nil {
+		return errors.New("Unable to bind to this interface")
 	}
 
-	sa = syscall.SockaddrInet4{
+	sa := syscall.SockaddrInet4{
 		Port: 0,
-		Addr: addr.To4(),
+		Addr: ip4ToByteSlice(addr.To4()),
 	}
-	if err = syscall.Bind(int(fd), sa); err != nil {
+	if err = syscall.Bind(int(fd), &sa); err != nil {
 		return fmt.Errorf("bind: %s", err.Error())
 	}
 
